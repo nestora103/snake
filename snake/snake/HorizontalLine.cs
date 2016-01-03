@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace snake
 {
-    class HorizontalLine
-    {
-        List<Point> pLine = new List<Point>();
-
+    class HorizontalLine:Figure
+    {   
         //начало линии по x, конец линии по x, позиция линии по y, каким символом рисовать
         public HorizontalLine(int xLeft,int xRight,int y,char sym)
         {
@@ -21,12 +19,6 @@ namespace snake
             }
         }
 
-        public void DrowHline()
-        {
-            foreach(Point p in pLine)
-            {
-                p.Draw();
-            }
-        }
+       
     }
 }
