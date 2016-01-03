@@ -31,8 +31,12 @@ namespace snake
             }
 
             //рисуем горизонтальную линию.
-            HorizontalLine line = new HorizontalLine(7,15,10,'£');
-            line.DrowHline();
+            HorizontalLine lineH = new HorizontalLine(7,15,10,'£');
+            lineH.DrowHline();
+
+            //рисуем вертикальную линию.
+            VerticalLine lineV = new VerticalLine(15,1,10,'£');
+            lineV.DrawVline();
 
             Console.ReadLine();          
         }
