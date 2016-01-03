@@ -30,26 +30,12 @@ namespace snake
                 p.Draw();
             }
 
-           
+            //рисуем горизонтальную линию.
+            HorizontalLine line = new HorizontalLine(7,15,10,'£');
+            line.DrowHline();
 
-           /* //создали типизированный список
-            List < int > list= new List<int>();
-            //добавляем в начало списка число 0;
-            list.Add(0);
-            //след. элемент 
-            list.Add(1);
-            //обращение к 1 элементу масства, нулевому
-            int i = list[0];
-
-            foreach (int k in list)
-            {
-                Console.WriteLine(k);
-                Console.ReadLine();
-            }*/
-
-            
-             
+            Console.ReadLine();          
         }
-        
+
     }
 }
