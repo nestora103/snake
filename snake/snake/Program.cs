@@ -31,9 +31,14 @@ namespace snake
             VerticalLine lineV2 = new VerticalLine(78, 0, 24,'#');
             lineV2.Draw();
 
+            //создаем стартовую точку для змейки
+            Point p = new Point(4, 5, '*');
+            //создаем змейку.
+            Snake snake = new Snake(p,4,Diraction.RIGHT);
+            //рисуем змейку
+            snake.Draw();
             Console.ReadLine();     
-            
-                 
+                        
         }
 
     }
