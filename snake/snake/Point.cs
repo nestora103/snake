@@ -17,11 +17,39 @@ namespace snake
 
         }
 
+        //создание точки
         public Point(int x,int y,char sym)
         {
             this.x = x;
             this.y = y;
             this.sym = sym;
+        }
+
+        //получение параметров хвостовой точки
+        public Point(Point p)
+        {
+            x = p.x;
+            y = p.y;
+            sym = p.sym;
+        }
+
+        //на сколько смещать хвостовую точку чтобы получить текущую и в какое направление
+        public void Move(int offset, Diraction diraction)
+        {
+            if (diraction==Diraction.RIGHT)
+            {
+                x = x + offset;
+            }else if(diraction == Diraction.LEFT)
+            {
+                x = x - offset;
+            }else if(diraction == Diraction.UP)
+            {
+                y = y - offset;
+            }
+            else
+            {
+                y = y + offset;
+            }
         }
 
         public void Draw()
