@@ -40,9 +40,28 @@ namespace snake
             //рисуем змейку
             snake.Draw();
 
+            //создаем класс для генерации еды,ему передаем размеры карты и символ еды.
+            FoodCreator foodCreator = new FoodCreator(80,25,'$');
+            Point food = foodCreator.CreateFood();
+            //рисуем точку еды
+            food.Draw();
+
             //проверяем бесконечно не изменилось ли направление змейки
             while (true)
-            {
+            {   
+                //проверяем на каждом шаге кушает ли змейка, если не есть значит двигается
+                if (snake.Eat(food))
+                {
+                    //съела? значит создать и оттобразить новую точку еды
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+
+                Thread.Sleep(100);
                 //нажималась ли какая нибудь кнопка
                 if (Console.KeyAvailable)
                 {
@@ -51,8 +70,8 @@ namespace snake
                     //получаем направление. Передам само значение нажатой кнопки
                     snake.GetDiraction(key.Key);
                 }
-                Thread.Sleep(100);
-                snake.Move();
+                
+                
             }
         }
 
