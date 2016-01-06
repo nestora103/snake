@@ -56,7 +56,13 @@ namespace snake
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
-            
+        }
+
+        //стираем в консоли старую хвостовую точку 
+        public void Clear()
+        {
+            sym = ' ';
+            Draw();
         }
     }
 }
