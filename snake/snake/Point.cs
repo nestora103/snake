@@ -64,5 +64,11 @@ namespace snake
             sym = ' ';
             Draw();
         }
+
+        //проверяем совпажение координат еды и начала змейки
+        public bool isHit(Point p)
+        {
+            return p.x == this.x && p.y == this.y;
+        }
     }
 }
