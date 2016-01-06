@@ -61,6 +61,24 @@ namespace snake
             }
         }
 
+        internal bool Eat(Point food)
+        {
+            //получаем головную точку змеи
+            Point head = GetNextPoint();
+            //проверяем находится ли голова в той же точек что и еда
+            if (head.isHit(food))
+            {
+                food.sym = head.sym;
+                pLine.Add(food);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
         public Point GetNextPoint()
         {   
             //получим последнюю точку списка
