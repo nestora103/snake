@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using System.Threading;
+
 namespace snake
 {
     class Program
@@ -37,8 +39,34 @@ namespace snake
             Snake snake = new Snake(p,4,Diraction.RIGHT);
             //рисуем змейку
             snake.Draw();
+            //переместим змейку по выбраннаму ранее направлению
+            snake.Move();
+            //зададим задержку 300 мс, использую встроенный класс и системную задержку
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
+            snake.Move();
+            Thread.Sleep(300);
             Console.ReadLine();     
-                        
+
         }
 
     }
