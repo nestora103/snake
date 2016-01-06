@@ -43,6 +43,24 @@ namespace snake
             head.Draw();
         }
 
+        public void GetDiraction(ConsoleKey key)
+        {
+            if (key == ConsoleKey.LeftArrow)
+            {
+                diractionM = Diraction.LEFT;
+            }else if(key == ConsoleKey.RightArrow)
+            {
+                diractionM = Diraction.RIGHT;
+            }else if (key==ConsoleKey.DownArrow)
+            {
+                diractionM = Diraction.DOWN;
+            }
+            else
+            {
+                diractionM = Diraction.UP;
+            }
+        }
+
         public Point GetNextPoint()
         {   
             //получим последнюю точку списка
