@@ -17,5 +17,15 @@ namespace snake
             }
         }
 
+        //переопределение метода отрисовки фигуры как надо для вертикальной линии
+        public override void Draw()
+        {
+            //устанавливаем цвет символов
+            Console.ForegroundColor = ConsoleColor.Green;
+            //базовая отрисовка фигуры
+            base.Draw();
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
     }
 }
