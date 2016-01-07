@@ -8,9 +8,10 @@ namespace snake
 {
     class Figure
     {
-       public List<Point> pLine = new List<Point>();
+       protected List<Point> pLine = new List<Point>();
 
-        public void Draw()
+        //делаем метод виртуальным чтобы наследники класса могли его переопределить
+        public virtual void Draw()
         {
             foreach (Point p in pLine)
             {
