@@ -10,70 +10,44 @@ namespace snake
 {
     class Program
     {
-        /*[DllImport("user32.dll")]
-        public static extern int GetSystemMetrics(int nIndex);
-        public const int SM_CXSCREEN = 0;
-        public const int SM_CYSCREEN = 1;*/
-
         static void Main(string[] args)
         {   
-            
-            /*int screenW = GetSystemMetrics(SM_CXSCREEN);
-            int screenH = GetSystemMetrics(SM_CYSCREEN);*/
-
             Console.SetBufferSize(80,25);
-            
-            //Отрисуем рамку
-            HorizontalLine lineH1 = new HorizontalLine(1,78,0,'#');
-            lineH1.Draw();
+
+            //создаем линии рамки
+            VerticalLine lineV1 = new VerticalLine(1, 0, 24, '%');
+            VerticalLine lineV2 = new VerticalLine(78, 0, 24, '%');
+            HorizontalLine lineH1 = new HorizontalLine(1, 78, 0, '#');
             HorizontalLine lineH2 = new HorizontalLine(1, 78, 24, '#');
-            lineH2.Draw();
-            VerticalLine lineV1 = new VerticalLine(1,0,24,'#');
-            lineV1.Draw();
-            VerticalLine lineV2 = new VerticalLine(78, 0, 24,'#');
-            lineV2.Draw();
 
             //создаем стартовую точку для змейки
             Point p = new Point(4, 5, '*');
-            //создаем змейку.
-            Snake snake = new Snake(p,4,Diraction.RIGHT);
-            //рисуем змейку
-            snake.Draw();
+            Figure fSnake = new Snake(p,4,Diraction.RIGHT);
+            //Отрисовка змеи как просто фигуры. Методы змеи ей не доступны
+            Draw(fSnake);
+            //приведение типа фигура к типу змеи. 
+            Snake snake = (Snake)fSnake;
 
-            //создаем класс для генерации еды,ему передаем размеры карты и символ еды.
-            FoodCreator foodCreator = new FoodCreator(80,25,'$');
-            Point food = foodCreator.CreateFood();
-            //рисуем точку еды
-            food.Draw();
+            //создаем список фигур в который положим линии рамки и саму змейку, для вывода в цикле
+            List<Figure> figures = new List<Figure>();
 
-            //проверяем бесконечно не изменилось ли направление змейки
-            while (true)
-            {   
-                //проверяем на каждом шаге кушает ли змейка, если не есть значит двигается
-                if (snake.Eat(food))
-                {
-                    //съела? значит создать и оттобразить новую точку еды
-                    food = foodCreator.CreateFood();
-                    food.Draw();
-                }
-                else
-                {
-                    snake.Move();
-                }
+            figures.Add(lineV1);
+            figures.Add(lineV2);
+            figures.Add(lineH1);
+            figures.Add(lineH2);
 
-                Thread.Sleep(100);
-                //нажималась ли какая нибудь кнопка
-                if (Console.KeyAvailable)
-                {
-                    //читаем какая кнопка была нажата
-                    ConsoleKeyInfo key = Console.ReadKey();
-                    //получаем направление. Передам само значение нажатой кнопки
-                    snake.GetDiraction(key.Key);
-                }
-                
-                
+            foreach (var f in figures)
+            {
+                f.Draw();
             }
+            Console.ReadLine();
+              
         }
-
+        //отрисовка переданной фигуры
+        static void Draw(Figure figure)
+        {
+            figure.Draw();
+        }
+        
     }
 }
