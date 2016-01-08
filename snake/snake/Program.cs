@@ -14,40 +14,42 @@ namespace snake
         {   
             Console.SetBufferSize(80,25);
 
-            //создаем линии рамки
-            VerticalLine lineV1 = new VerticalLine(1, 0, 24, '%');
-            VerticalLine lineV2 = new VerticalLine(78, 0, 24, '%');
-            HorizontalLine lineH1 = new HorizontalLine(1, 78, 0, '#');
-            HorizontalLine lineH2 = new HorizontalLine(1, 78, 24, '#');
-
+            Walls walls = new Walls(80,25);
+            walls.Draw();
+            
             //создаем стартовую точку для змейки
             Point p = new Point(4, 5, '*');
-            Figure fSnake = new Snake(p,4,Diraction.RIGHT);
-            //Отрисовка змеи как просто фигуры. Методы змеи ей не доступны
-            Draw(fSnake);
-            //приведение типа фигура к типу змеи. 
-            Snake snake = (Snake)fSnake;
+            Snake snake = new Snake(p,4,Diraction.RIGHT);
+            snake.Draw();
 
-            //создаем список фигур в который положим линии рамки и саму змейку, для вывода в цикле
-            List<Figure> figures = new List<Figure>();
+            FoodCreator foodCreator = new FoodCreator(80,25,'$');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
 
-            figures.Add(lineV1);
-            figures.Add(lineV2);
-            figures.Add(lineH1);
-            figures.Add(lineH2);
-
-            foreach (var f in figures)
+            while (true)
             {
-                f.Draw();
-            }
-            Console.ReadLine();
-              
+                if ((walls.IsHit(snake)) || (snake.IsHitTail()))
+                {
+                    break;
+                }
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+
+                Thread.Sleep(100);
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.GetDiraction(key.Key);
+                } 
+            }  
         }
-        //отрисовка переданной фигуры
-        static void Draw(Figure figure)
-        {
-            figure.Draw();
-        }
-        
+               
     }
 }
